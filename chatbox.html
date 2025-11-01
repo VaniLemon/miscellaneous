@@ -53,17 +53,14 @@
   </style>
 </head>
 <body>
-  <h2>🤖 Make.com AI Chatbot</h2>
+  <h2>🧙‍♂️ The Eud-AI-monia</h2>
+  <h3>The conversation that will help you flourish.</h3>
 
   <!-- Step 1: Setup Form -->
   <form id="setupForm">
     <label>
       Make Webhook URL:
       <input type="text" id="webhookURL" placeholder="https://hook.eu1.make.com/your-webhook-id" required />
-    </label>
-    <label>
-      Secret (optional):
-      <input type="password" id="secret" placeholder="Optional secret key" />
     </label>
     <button type="submit">Save Settings</button>
   </form>
@@ -91,20 +88,19 @@
     let secret = '';
     let chatHistory = [];
 
-    const SYSTEM_GREETING = "Customer Support: Hello, how can I serve you?";
+    const SYSTEM_GREETING = "Socra-tech: Hello, howdo you feel today?";
 
     // Initialize new chat
     function initChat() {
       chatHistory = [SYSTEM_GREETING];
       chatDiv.innerHTML = '';
-      addMessage('Customer Support', 'Hello, how can I serve you?');
+      addMessage('Socra-tech', 'Hello, howdo you feel today?');
     }
 
     // Handle setup form
     setupForm.addEventListener('submit', e => {
       e.preventDefault();
       webhookURL = document.getElementById('webhookURL').value.trim();
-      secret = document.getElementById('secret').value.trim();
 
       if (!webhookURL.startsWith('https://hook.')) {
         alert('Please enter a valid Make.com webhook URL.');
