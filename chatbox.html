@@ -92,13 +92,13 @@
     let secret = '';
     let chatHistory = [];
 
-    const SYSTEM_GREETING = "Customer Support: Hello, how can I serve you?";
+    const SYSTEM_GREETING = "Socra-tech: Hello, how do you feel today?";
 
     // Initialize new chat
     function initChat() {
       chatHistory = [SYSTEM_GREETING];
       chatDiv.innerHTML = '';
-      addMessage('Customer Support', 'Hello, how can I serve you?');
+      addMessage('CSocra-tech: Hello, how do you feel today?');
     }
 
     // Handle setup form
@@ -159,15 +159,15 @@
         const data = await response.json();
         const reply = data.reply || JSON.stringify(data);
 
-        //addMessage('Customer Support', reply);
-        //chatHistory.push(`Customer Support: ${reply}`);
+        //addMessage('Socra-tech', reply);
+        //chatHistory.push(`Socra-tech: ${reply}`);
         // Format AI reply: render newlines and bold properly
         const replyText = reply
           .replace(/\\n/g, '<br>')
           .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-        addMessage('Customer Support', replyText);
-        chatHistory.push(`Customer Support: ${reply}`); // keep raw text in history
+        addMessage('Socra-tech', replyText);
+        chatHistory.push(`Socra-tech: ${reply}`); // keep raw text in history
         //Added info till here
 
       } catch (err) {
