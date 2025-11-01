@@ -58,12 +58,6 @@
 
   <!-- Step 1: Setup Form -->
 <form id="setupForm">
-  
-  <input 
-    type="hidden" 
-    id="webhookURL" 
-    value="https://hook.eu2.make.com/ezaxfneqg6hsh0dx1a5roj3kz478xhvl" 
-  />
 
   <button type="submit">I am ready to flourish 👌!</button>
 
@@ -91,7 +85,7 @@
     let secret = '';
     let chatHistory = [];
 
-    const SYSTEM_GREETING = "Socra-tech: Hello, howdo you feel today?";
+    const SYSTEM_GREETING = "Socra-tech: Hello, how do you feel today?";
 
     // Initialize new chat
     function initChat() {
@@ -103,7 +97,7 @@
     // Handle setup form
     setupForm.addEventListener('submit', e => {
       e.preventDefault();
-      webhookURL = document.getElementById('webhookURL').value.trim();
+     const webhookURL = "https://hook.eu2.make.com/ezaxfneqg6hsh0dx1a5roj3kz478xhvl";
 
       if (!webhookURL.startsWith('https://hook.')) {
         alert('Please enter a valid Make.com webhook URL.');
