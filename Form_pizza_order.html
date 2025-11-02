@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pedido de Pizza</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido de Pizza Personalizado</title>
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -19,7 +19,7 @@
       padding: 2rem;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      width: 360px;
+      width: 400px;
     }
     h2 {
       text-align: center;
@@ -39,21 +39,27 @@
       border: 1px solid #ccc;
       font-size: 1rem;
     }
-    select[multiple] {
-      height: 200px;
-    }
-    button {
-      width: 48%;
-      padding: 0.7rem;
+    .pizza-options {
       margin-top: 1.5rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+    }
+    .pizza-item {
+      background-color: #f9f3ec;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
     }
     .actions {
       display: flex;
       justify-content: space-between;
+      margin-top: 1.5rem;
+    }
+    button {
+      width: 48%;
+      padding: 0.7rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
     .submit-btn {
       background-color: #e67e22;
@@ -72,11 +78,11 @@
   </style>
 </head>
 <body>
-  <form action="https://hook.eu2.make.com/3smzpww9krh5r4okx0e5yoy9v13i1c7m" method="POST">
+  <form id="pizzaForm" action="https://hook.eu2.make.com/3smzpww9krh5r4okx0e5yoy9v13i1c7m" method="POST">
     <h2>🍕 Pedido de Pizza</h2>
 
-    <label for="pizza_name">Selecciona tus pizzas:</label>
-    <select id="pizza_name" name="pizza_name[]" multiple required>
+    <label for="pizzaSelect">Selecciona tus pizzas:</label>
+    <select id="pizzaSelect" name="pizza_name[]" multiple required>
       <option value="The Barbecue Chicken Pizza">The Barbecue Chicken Pizza</option>
       <option value="The Big Meat Pizza">The Big Meat Pizza</option>
       <option value="The Brie Carre Pizza">The Brie Carre Pizza</option>
@@ -111,19 +117,46 @@
       <option value="The Vegetables + Vegetables Pizza">The Vegetables + Vegetables Pizza</option>
     </select>
 
-    <label for="cantidad">Cantidad total:</label>
-    <input type="number" id="cantidad" name="cantidad" min="1" value="1" required />
+    <div id="pizzaOptions" class="pizza-options"></div>
 
     <label for="email">Correo del cliente:</label>
     <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required />
-
-    <label for="tamaño">Tamaño:</label>
-    <input type="text" id="tamaño" name="tamaño" required />
 
     <div class="actions">
       <button type="reset" class="reset-btn">Resetear</button>
       <button type="submit" class="submit-btn">Enviar pedido</button>
     </div>
   </form>
+
+  <script>
+    const pizzaSelect = document.getElementById('pizzaSelect');
+    const pizzaOptions = document.getElementById('pizzaOptions');
+
+    pizzaSelect.addEventListener('change', () => {
+      pizzaOptions.innerHTML = ''; // limpiar opciones anteriores
+      const selected = Array.from(pizzaSelect.selectedOptions).map(opt => opt.value);
+
+      selected.forEach(pizza => {
+        const div = document.createElement('div');
+        div.classList.add('pizza-item');
+        div.innerHTML = `
+          <h4>${pizza}</h4>
+          <label>Cantidad:</label>
+          <input type="number" name="cantidad_${pizza}" min="1" value="1" required />
+          <label>Tamaño:</label>
+          <select name="tamano_${pizza}" required>
+            <option value="Pequeña">Pequeña</option>
+            <option value="Mediana">Mediana</option>
+            <option value="Grande">Grande</option>
+          </select>
+        `;
+        pizzaOptions.appendChild(div);
+      });
+    });
+
+    document.getElementById('pizzaForm').addEventListener('reset', () => {
+      pizzaOptions.innerHTML = '';
+    });
+  </script>
 </body>
 </html>
