@@ -6,66 +6,124 @@
   <title>Pedido de Pizza</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #fdf3e7;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #fff8f0;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      margin: 0;
     }
     form {
       background: white;
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      width: 320px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 360px;
     }
     h2 {
       text-align: center;
       color: #d35400;
+      margin-bottom: 1.5rem;
     }
     label {
       display: block;
       margin-top: 1rem;
       font-weight: bold;
     }
-    input {
+    select, input {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
       border-radius: 6px;
       border: 1px solid #ccc;
-      margin-top: 0.3rem;
+      font-size: 1rem;
+    }
+    select[multiple] {
+      height: 200px;
     }
     button {
-      margin-top: 1.5rem;
-      width: 100%;
+      width: 48%;
       padding: 0.7rem;
-      background-color: #e67e22;
-      color: white;
+      margin-top: 1.5rem;
+      font-size: 1rem;
       border: none;
       border-radius: 8px;
-      font-size: 1rem;
       cursor: pointer;
     }
-    button:hover {
+    .actions {
+      display: flex;
+      justify-content: space-between;
+    }
+    .submit-btn {
+      background-color: #e67e22;
+      color: white;
+    }
+    .submit-btn:hover {
       background-color: #d35400;
+    }
+    .reset-btn {
+      background-color: #ccc;
+      color: #333;
+    }
+    .reset-btn:hover {
+      background-color: #b3b3b3;
     }
   </style>
 </head>
 <body>
-  <form action="https://hook.eu2.make.com/3smzpww9krh5r4okx0e5yoy9v13i1c7m" method="POST">
+  <form action="https://tuservidor.com/webhook-pizza" method="POST">
     <h2>🍕 Pedido de Pizza</h2>
 
-    <label for="nombre_pizza">Nombre de la pizza:</label>
-    <input type="text" id="nombre_pizza" name="nombre_pizza" placeholder="Ej. Margarita" required />
+    <label for="pizza_name">Selecciona tus pizzas:</label>
+    <select id="pizza_name" name="pizza_name[]" multiple required>
+      <option value="The Barbecue Chicken Pizza">The Barbecue Chicken Pizza</option>
+      <option value="The Big Meat Pizza">The Big Meat Pizza</option>
+      <option value="The Brie Carre Pizza">The Brie Carre Pizza</option>
+      <option value="The Calabrese Pizza">The Calabrese Pizza</option>
+      <option value="The California Chicken Pizza">The California Chicken Pizza</option>
+      <option value="The Chicken Alfredo Pizza">The Chicken Alfredo Pizza</option>
+      <option value="The Chicken Pesto Pizza">The Chicken Pesto Pizza</option>
+      <option value="The Classic Deluxe Pizza">The Classic Deluxe Pizza</option>
+      <option value="The Five Cheese Pizza">The Five Cheese Pizza</option>
+      <option value="The Four Cheese Pizza">The Four Cheese Pizza</option>
+      <option value="The Greek Pizza">The Greek Pizza</option>
+      <option value="The Green Garden Pizza">The Green Garden Pizza</option>
+      <option value="The Hawaiian Pizza">The Hawaiian Pizza</option>
+      <option value="The Italian Capocollo Pizza">The Italian Capocollo Pizza</option>
+      <option value="The Italian Supreme Pizza">The Italian Supreme Pizza</option>
+      <option value="The Italian Vegetables Pizza">The Italian Vegetables Pizza</option>
+      <option value="The Mediterranean Pizza">The Mediterranean Pizza</option>
+      <option value="The Mexicana Pizza">The Mexicana Pizza</option>
+      <option value="The Napolitana Pizza">The Napolitana Pizza</option>
+      <option value="The Pepper Salami Pizza">The Pepper Salami Pizza</option>
+      <option value="The Pepperoni Pizza">The Pepperoni Pizza</option>
+      <option value="The Pepperoni, Mushroom, and Peppers Pizza">The Pepperoni, Mushroom, and Peppers Pizza</option>
+      <option value="The Prosciutto and Arugula Pizza">The Prosciutto and Arugula Pizza</option>
+      <option value="The Sicilian Pizza">The Sicilian Pizza</option>
+      <option value="The Soppressata Pizza">The Soppressata Pizza</option>
+      <option value="The Southwest Chicken Pizza">The Southwest Chicken Pizza</option>
+      <option value="The Spicy Italian Pizza">The Spicy Italian Pizza</option>
+      <option value="The Spinach and Feta Pizza">The Spinach and Feta Pizza</option>
+      <option value="The Spinach Pesto Pizza">The Spinach Pesto Pizza</option>
+      <option value="The Spinach Supreme Pizza">The Spinach Supreme Pizza</option>
+      <option value="The Thai Chicken Pizza">The Thai Chicken Pizza</option>
+      <option value="The Vegetables + Vegetables Pizza">The Vegetables + Vegetables Pizza</option>
+    </select>
 
-    <label for="cantidad">Cantidad:</label>
+    <label for="cantidad">Cantidad total:</label>
     <input type="number" id="cantidad" name="cantidad" min="1" value="1" required />
 
-    <label for="email">Correo electrónico:</label>
+    <label for="email">Correo del cliente:</label>
     <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required />
 
-    <button type="submit">Enviar pedido</button>
+    <label for="tamaño">Tamaño:</label>
+    <input type="text" id="tamaño" name="tamaño" required />
+
+    <div class="actions">
+      <button type="reset" class="reset-btn">Resetear</button>
+      <button type="submit" class="submit-btn">Enviar pedido</button>
+    </div>
   </form>
 </body>
 </html>
