@@ -18,7 +18,7 @@
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      width: 300px;
+      width: 320px;
     }
     h2 {
       text-align: center;
@@ -53,13 +53,17 @@
   </style>
 </head>
 <body>
-  <form action="https://hook.eu2.make.com/3smzpww9krh5r4okx0e5yoy9v13i1c7m" method="POST">
+  <form action="https://tuservidor.com/webhook-pizza" method="POST">
     <h2>🍕 Pedido de Pizza</h2>
+
     <label for="nombre_pizza">Nombre de la pizza:</label>
     <input type="text" id="nombre_pizza" name="nombre_pizza" placeholder="Ej. Margarita" required />
 
     <label for="cantidad">Cantidad:</label>
     <input type="number" id="cantidad" name="cantidad" min="1" value="1" required />
+
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required />
 
     <button type="submit">Enviar pedido</button>
   </form>
