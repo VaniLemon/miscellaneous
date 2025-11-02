@@ -128,37 +128,43 @@
     </div>
   </form>
 
-  <script>
-    const pizzaSelect = document.getElementById('pizzaSelect');
-    const pizzaOptions = document.getElementById('pizzaOptions');
+<script>
+  const pizzaSelect = document.getElementById('pizzaSelect');
+  const pizzaOptions = document.getElementById('pizzaOptions');
+  const pizzaForm = document.getElementById('pizzaForm');
 
-    pizzaSelect.addEventListener('change', () => {
-      pizzaOptions.innerHTML = ''; // limpiar opciones anteriores
-      const selected = Array.from(pizzaSelect.selectedOptions).map(opt => opt.value);
+  pizzaSelect.addEventListener('change', () => {
+    pizzaOptions.innerHTML = ''; // pulisci le opzioni precedenti
+    const selectedPizzas = Array.from(pizzaSelect.selectedOptions).map(opt => opt.value);
 
-      selected.forEach(pizza => {
-        const div = document.createElement('div');
-        div.classList.add('pizza-item');
-        div.innerHTML = `
-          <h4>${pizza}</h4>
-          <label>Cantidad:</label>
-          <input type="number" name="cantidad_${pizza}" min="1" value="1" required />
-          <label>Tamaño:</label>
-          <select name="tamano_${pizza}" required>
+    selectedPizzas.forEach(pizza => {
+      const div = document.createElement('div');
+      div.classList.add('pizza-item');
+      div.innerHTML = `
+        <fieldset style="margin-bottom:10px; border:1px solid #ccc; padding:10px;">
+          <legend><strong>${pizza}</strong></legend>
+
+          <label>Quantità:</label>
+          <input type="number" name="cantidad[]" min="1" value="1" required>
+
+          <label>Taglia:</label>
+          <select name="tamano[]" required>
+            <option value="">-- seleziona --</option>
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
             <option value="XL">XL</option>
             <option value="XXL">XXL</option>
           </select>
-        `;
-        pizzaOptions.appendChild(div);
-      });
+        </fieldset>
+      `;
+      pizzaOptions.appendChild(div);
     });
+  });
 
-    document.getElementById('pizzaForm').addEventListener('reset', () => {
-      pizzaOptions.innerHTML = '';
-    });
-  </script>
+  pizzaForm.addEventListener('reset', () => {
+    pizzaOptions.innerHTML = '';
+  });
+</script>
 </body>
 </html>
